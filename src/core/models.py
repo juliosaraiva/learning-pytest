@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 
 class Company(models.Model):
@@ -12,7 +13,7 @@ class Company(models.Model):
     status = models.CharField(choices=CompanyStatus.choices, max_length=20, default=CompanyStatus.HIRING)
     url = models.URLField(blank=True)
     notes = models.CharField(max_length=100, blank=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
+    updated_at = models.DateTimeField(default=now, editable=True)
 
     def __str__(self):
         return f'{self.name}'
